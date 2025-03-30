@@ -21,3 +21,15 @@ def get_ai_response(user_message: str) -> str:
         return response.choices[0].message.content
     except Exception as e:
         return f"Error: {str(e)}"
+
+
+def get_faq_response(question: str) -> str:
+    """Uses OpenAI's API to generate answers for FAQs."""
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": question}]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"Error: {str(e)}"
